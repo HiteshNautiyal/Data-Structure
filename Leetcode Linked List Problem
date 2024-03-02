@@ -64,7 +64,17 @@ public:
             list1->next = mergeTwoLists(list1->next, list2);
             return list1;
         }
-        else if(list1->val >= list2->val)/**
+        else if(list1->val >= list2->val)
+        {
+            list2->next = mergeTwoLists(list1, list2->next);
+        }
+        return list2;
+    }
+};
+
+Ques 3:- Leetcode Problem No.: 83 (Remove Duplicate From Sorted Lists)
+Ans:-
+/**
  * Definition for singly-linked list.
  * struct ListNode {
  *     int val;
@@ -102,14 +112,3 @@ public:
 
     }
 };
-        {
-            list2->next = mergeTwoLists(list1, list2->next);
-        }
-        return list2;
-    }
-};
-
-Ques 3:- Leetcode Problem No.: 83 (Remove Duplicate From Sorted Lists)
-Ans:-
-
-
