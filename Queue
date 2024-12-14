@@ -1,0 +1,139 @@
+Ques1 :Using Array?
+#include<iostream>
+
+using namespace std;
+
+class Queue{
+	int f,r,n,cs;
+	int *queue;
+	public:
+		Queue(int size)
+		{
+			n = size;
+			f = 0;
+			r = n-1;
+			cs = 0;
+			queue = new int [n];
+		}
+		void push(int key)
+		{
+			if(cs < n)
+			{
+				r = (r+1)%n;
+				queue[r] = key;
+				cs++;
+				
+			}
+			else
+			cout<<"Overflow"<<endl;
+		}
+		
+		void pop()
+		{
+			if(cs > 0)
+			{
+				f = (f+1)%n;
+				cs--;
+			}
+			else
+			cout<<"Underflow"<<endl;
+		}
+		
+		int front()
+		{
+			return queue[f];
+		}
+		
+		bool empty()
+		{
+			return cs==0;
+		}
+		
+		int size()
+		{
+		
+		return cs;
+	}
+};
+
+int main()
+{
+	Queue q(4);
+	q.push(1);
+	q.push(2);
+	
+	while(!q.empty())
+	{
+		cout<<q.front()<<" ";
+		q.pop();
+	}
+	cout<<endl;
+	
+
+return 0;
+
+}
+*****************************************************************************************************************************************************************
+Ques 2: Using Linked List?
+Ans: 
+class Queue{
+	node *head, *tail;
+	int cs;
+	public:
+		Queue()
+		{
+			head = tail = NULL;
+			cs = 0;
+		}
+		void push(int key)//Insert At End
+		{
+			cs++;
+			if(!head)
+			{
+				head= tail = new node(key);
+			}
+			else
+			{
+				node *n = new node(key);
+				tail -> next = n;
+				tail = n;
+			}
+		}
+		
+		void pop()//Delete At Front
+		{
+			
+			if(!head)
+			{
+				return;
+			}
+			else if(!head->next)
+			{
+				delete head;
+				head = tail = NULL;
+				cs--;
+			}
+			else
+			{
+				node *n = head;
+				head= head->next;
+				delete n;
+				cs--;
+			}
+		}
+		
+		int front()
+		{
+			return head->data;
+		}
+		
+		bool empty()
+		{
+			return head == NULL;
+		}
+		
+		int size()
+		{
+			return cs;
+		}
+};
